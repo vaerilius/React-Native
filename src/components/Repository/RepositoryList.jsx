@@ -58,10 +58,9 @@ const styles = StyleSheet.create({
   });
 
 
-const ItemSeparator = () => <View style={styles.separator} />;
+export const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryList = () => {
-  console.log(repositories);
     return (
       <FlatList
         data={repositories}
