@@ -1,16 +1,23 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform,StyleSheet, View } from "react-native";
 import { Route, Switch, Redirect } from "react-router-native";
 import RepositoryList from "./Repository/RepositoryList";
 import AppBar from "./AppBar";
 import SignIn from "./SignIn";
+import theme from "../theme";
 
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     flexShrink: 1,
+    fontFamily: Platform.select({
+      android: theme.fonts.adnroid,
+      ios: theme.fonts.ios,
+      default: theme.fonts.main,
+    }),
   },
 });
+
 
 const Main = () => {
   return (

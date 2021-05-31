@@ -13,6 +13,8 @@ const theme = {
     },
     fonts: {
       main: 'System',
+      android: 'sans-serif',
+      ios: 'roboto'
     },
     fontWeights: {
       normal: '400',
