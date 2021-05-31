@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Image, StyleSheet, Button } from "react-native";
-import Text from "../../Text";
+import Text from "../Text";
 import Constants from "expo-constants";
 import theme from "../../theme";
 

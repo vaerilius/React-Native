@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import Text from "../Text";
+import Text from "./Text";
 import theme from "../theme";
 
 import { Link } from "react-router-native";
