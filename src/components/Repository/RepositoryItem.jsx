@@ -43,7 +43,6 @@ const computeNumber = (num) =>
   num > 999 ? (num / 1000).toFixed(1) + "k" : num;
 
 const RepositoryItem = ({ item }) => {
-  console.log("item.ownerAvatarUrl :>> ", item.ownerAvatarUrl);
   return (
     <View style={styles.container}>
       <View style={styles.rowDirectionRow}>
@@ -70,21 +69,21 @@ const RepositoryItem = ({ item }) => {
       </View>
       <View style={styles.containerBottom}>
         <View>
-          <Text>{computeNumber(item.stargazersCount)}</Text>
+          <Text fontWeight='bold'>{computeNumber(item.stargazersCount)}</Text>
           <Text color='textSecondary'>Stars</Text>
         </View>
 
         <View>
-          <Text>{computeNumber(item.forksCount)}</Text>
+          <Text fontWeight='bold'>{computeNumber(item.forksCount)}</Text>
           <Text color='textSecondary'>Forks</Text>
         </View>
 
         <View>
-          <Text>{computeNumber(item.reviewCount)}</Text>
+          <Text fontWeight='bold'>{computeNumber(item.reviewCount)}</Text>
           <Text color='textSecondary'>Reviews</Text>
         </View>
         <View>
-          <Text>{item.ratingAverage}</Text>
+          <Text fontWeight='bold'>{item.ratingAverage}</Text>
           <Text color='textSecondary'>Ratings</Text>
         </View>
       </View>
