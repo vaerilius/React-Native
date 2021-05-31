@@ -5,6 +5,7 @@ const theme = {
       textWhite: '#FFFFFF',
       primary: '#0366d6',
       navBg: '#24292e',
+      error: '#d73a4a'
     },
     fontSizes: {
       body: 14,
