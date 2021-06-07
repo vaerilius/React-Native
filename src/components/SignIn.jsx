@@ -4,7 +4,7 @@ import FormikTextInput from "./FormikTextInput";
 import { View, Button } from "react-native";
 import * as yup from "yup";
 import useSignIn from "../hooks/useSignIn";
-
+import { useHistory } from "react-router-native";
 
 const validationSchema = yup.object().shape({
   username: yup.string().required("Username is required"),
@@ -16,6 +16,8 @@ const initialValues = {
 };
 
 const SignIn = () => {
+  const history = useHistory();
+
   const [signIn] = useSignIn();
 
   const onSubmit = async (values) => {
@@ -23,12 +25,13 @@ const SignIn = () => {
     try {
       const { data } = await signIn({ username, password });
       console.log(data);
-      
+      history.push("/");
     } catch (e) {
       console.log(e);
     }
-    initialValues.username = '';
-    initialValues.password = '';
+
+    initialValues.username = "";
+    initialValues.password = "";
   };
 
   return (
