@@ -5,6 +5,7 @@ import { View, Button } from "react-native";
 import * as yup from "yup";
 import useSignIn from "../hooks/useSignIn";
 
+
 const validationSchema = yup.object().shape({
   username: yup.string().required("Username is required"),
   password: yup.string().required("Password is required"),
@@ -22,9 +23,12 @@ const SignIn = () => {
     try {
       const { data } = await signIn({ username, password });
       console.log(data);
+      
     } catch (e) {
       console.log(e);
     }
+    initialValues.username = '';
+    initialValues.password = '';
   };
 
   return (
