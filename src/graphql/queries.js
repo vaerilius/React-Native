@@ -5,6 +5,7 @@ export const GET_REPOSITORIES = gql`
     repositories {
       edges {
         node {  
+          id,
           name,
           ownerAvatarUrl,
           fullName,
