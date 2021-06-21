@@ -44,7 +44,7 @@ const computeNumber = (num) =>
 
 const RepositoryItem = ({ item }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID={item.id}>
       <View style={styles.rowDirectionRow}>
         <Image
           style={styles.image}
@@ -53,37 +53,38 @@ const RepositoryItem = ({ item }) => {
           }}
         />
         <View style={(styles.header, styles.header)}>
-          <Text fontWeight='bold' style={{ paddingBottom: 10 }}>
+          <Text fontWeight='bold' style={{ paddingBottom: 10 }} testID="fullName">
             {item.fullName}
           </Text>
-          <Text style={{ paddingBottom: 10 }}>{item.description}</Text>
+          <Text style={{ paddingBottom: 10 }} testID='description'>{item.description}</Text>
           <View style={styles.fixToText}>
             <Button
               onPress={() => console.log(item.language)}
               title={item.language}
               color={styles.language.color}
               accessibilityLabel='Learn more about this purple button'
+              testID='language'
             />
           </View>
         </View>
       </View>
       <View style={styles.containerBottom}>
         <View>
-          <Text fontWeight='bold'>{computeNumber(item.stargazersCount)}</Text>
+          <Text fontWeight='bold' testID='stargazersCount'>{computeNumber(item.stargazersCount)}</Text>
           <Text color='textSecondary'>Stars</Text>
         </View>
 
         <View>
-          <Text fontWeight='bold'>{computeNumber(item.forksCount)}</Text>
+          <Text fontWeight='bold' testID='forksCount'>{computeNumber(item.forksCount)}</Text>
           <Text color='textSecondary'>Forks</Text>
         </View>
 
         <View>
-          <Text fontWeight='bold'>{computeNumber(item.reviewCount)}</Text>
+          <Text fontWeight='bold' testID='reviewCount'>{computeNumber(item.reviewCount)}</Text>
           <Text color='textSecondary'>Reviews</Text>
         </View>
         <View>
-          <Text fontWeight='bold'>{item.ratingAverage}</Text>
+          <Text fontWeight='bold' testID='ratingAverage'>{item.ratingAverage}</Text>
           <Text color='textSecondary'>Ratings</Text>
         </View>
       </View>
