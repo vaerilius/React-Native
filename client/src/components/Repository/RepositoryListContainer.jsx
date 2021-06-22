@@ -1,6 +1,7 @@
 import React from "react";
-import { FlatList, StyleSheet,View } from "react-native";
-import RepositoryItem from "./RepositoryItem";
+import { FlatList, StyleSheet, View, Pressable } from "react-native";
+import { useHistory } from "react-router";
+import { RepositoryItem } from "./RepositoryItem";
 
 const styles = StyleSheet.create({
   separator: {
@@ -9,17 +10,32 @@ const styles = StyleSheet.create({
 });
 
 export const ItemSeparator = () => <View style={styles.separator} />;
-export const RepositoryListContainer = ({ repositories }) => {
+
+const RepositoryListContainer = ({ repositories }) => {
+  const history = useHistory();
   const repositoryNodes = repositories
-    ? repositories.edges.map((edge) => edge.node)
+    ? repositories.edges && repositories.edges.map((edge) => edge.node)
     : [];
 
+    const PressableContainer = ({item}) => {
+      const onPress = () => {
+        history.push(`/repository/${item.id}`);
+      };
+      return(
+        <Pressable onPress={onPress}>
+          <RepositoryItem item={item}/>
+        </Pressable>
+      );
+    };
+  
   return (
     <FlatList
       data={repositoryNodes}
       keyExtractor={(item) => item.id}
       ItemSeparatorComponent={ItemSeparator}
-      renderItem={RepositoryItem}
+      renderItem={PressableContainer}
     />
   );
 };
+
+export default RepositoryListContainer;
