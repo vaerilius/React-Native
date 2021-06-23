@@ -33,7 +33,6 @@ const AppBar = () => {
   };
 
   if (loading) return <Text>Loading...</Text>;
-  console.log("data :>> ", data);
   return (
     <View style={styles.container}>
       <ScrollView horizontal style={styles.scrollView}>

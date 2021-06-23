@@ -6,5 +6,5 @@ export const useRepository = (id) => {
     fetchPolicy: "cache-and-network",
     variables: { id },
   });
-  return { repository: data.repository ? data.repository : null };
+  return { repository: data.repository ? data.repository : null, reviews: data.repository.reviews.edges.map(edge => edge.node) };
 };

@@ -1,12 +1,11 @@
 import React from "react";
 import { Platform, StyleSheet, View } from "react-native";
-import { Route, Switch, Redirect, useParams } from "react-router-native";
+import { Route, Switch, Redirect } from "react-router-native";
 import RepositoryList from "./Repository/RepositoryList";
 import AppBar from "./AppBar";
 import SignIn from "./SignIn";
 import theme from "../theme";
-import { RepositoryItem } from "./Repository/RepositoryItem";
-import { useRepository } from "../hooks/useRepository";
+import { SingleRepository } from "./Repository/RepositoryItem";
 
 const styles = StyleSheet.create({
   container: {
@@ -19,15 +18,6 @@ const styles = StyleSheet.create({
     }),
   },
 });
-
-const DisplayItem = () => {
-  const { id } = useParams();
-  const { repository } = useRepository(id);
-  
-  return (
-    <RepositoryItem item={repository} displayButton />
-  )
-}
 
 const Main = () => {
   return (
@@ -44,7 +34,7 @@ const Main = () => {
           <RepositoryList />
         </Route>
         <Route path='/repository/:id' exact>
-          <DisplayItem/>
+          <SingleRepository />
         </Route>
         <Route path='/SignIn' exact>
           <SignIn />
