@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
   container: {
     padding: Constants.statusBarHeight,
     backgroundColor: theme.colors.navBg,
-    flexDirection: "row",
+    flexDirection: "column",
   },
   scrollView: {
-    marginHorizontal: 20,
+    marginVertical: 10,
   },
 });
 
@@ -37,10 +37,11 @@ const AppBar = () => {
     <View style={styles.container}>
       <ScrollView horizontal style={styles.scrollView}>
         {data.authorizedUser ? (
-          <View>
+          <>
             <Link to='/' component={AppBarTab} label='Repositories' />
+            <Link to='/create-review' component={AppBarTab} label='Create a review' />
             <Link onPress={signOut} component={AppBarTab} label={"Sign Out"} />
-          </View>
+          </>
         ) : (
           <Link to='/SignIn' component={AppBarTab} label='SignIn' />
         )}
