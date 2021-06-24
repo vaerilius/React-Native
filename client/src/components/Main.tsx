@@ -7,6 +7,7 @@ import SignIn from "./SignIn";
 import theme from "../theme";
 import { SingleRepository } from "./Repository/RepositoryItem";
 import { CreateReview } from "./CreateReview";
+import SignUp from "./SignUp";
 
 const styles = StyleSheet.create({
   container: {
@@ -42,6 +43,9 @@ const Main = () => {
         </Route>
         <Route path='/SignIn' exact>
           <SignIn />
+        </Route>
+        <Route path='/signUp' exact>
+          <SignUp />
         </Route>
         <Redirect to='/' />
       </Switch>

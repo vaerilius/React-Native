@@ -39,11 +39,18 @@ const AppBar = () => {
         {data.authorizedUser ? (
           <>
             <Link to='/' component={AppBarTab} label='Repositories' />
-            <Link to='/create-review' component={AppBarTab} label='Create a review' />
+            <Link
+              to='/create-review'
+              component={AppBarTab}
+              label='Create a review'
+            />
             <Link onPress={signOut} component={AppBarTab} label={"Sign Out"} />
           </>
         ) : (
-          <Link to='/SignIn' component={AppBarTab} label='SignIn' />
+          <>
+            <Link to='/SignIn' component={AppBarTab} label='SignIn' />
+            <Link to='/signUp' component={AppBarTab} label='Sign up' />
+          </>
         )}
       </ScrollView>
     </View>
