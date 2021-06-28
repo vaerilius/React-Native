@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import { useQuery, useApolloClient } from "@apollo/client";
+import {  useApolloClient } from "@apollo/client";
 import Constants from "expo-constants";
 import theme from "../theme";
 import AppBarTab from "./AppBarTab";
-import { AUTH } from "../graphql/queries";
 import Text from "./Text";
 import AuthStorageContext from "../contexts/AuthStorageContext";
 import { Link, useHistory } from "react-router-native";
+import { useAuth } from "../hooks/useAuth";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   const authStorage = useContext(AuthStorageContext);
   const apolloClient = useApolloClient();
-  const { loading, data } = useQuery(AUTH);
+  const { loading, data } = useAuth();
   const history = useHistory();
 
   const signOut = () => {
@@ -33,6 +33,10 @@ const AppBar = () => {
   };
 
   if (loading) return <Text>Loading...</Text>;
+
+  // if (data && !data.authorizedUser) {
+  //   signOut();
+  // }
   return (
     <View style={styles.container}>
       <ScrollView horizontal style={styles.scrollView}>
