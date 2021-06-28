@@ -2,11 +2,16 @@ import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_REPOSITORIES } from "../graphql/queries";
 
-const useRepositories = (id) => {
-  let variables = null;
+const useRepositories = (id, searchKeyword) => {
+  let variables = searchKeyword
+    ? {
+        searchKeyword,
+      }
+    : {};
   switch (id) {
     case 0:
       variables = {
+        ...variables,
         orderBy: "CREATED_AT",
         orderDirection: "DESC",
       };

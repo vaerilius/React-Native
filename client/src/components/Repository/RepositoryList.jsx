@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Menu, Provider } from "react-native-paper";
+import { Button, Menu, Provider, Searchbar } from "react-native-paper";
 import useRepositories from "../../hooks/useRepositories";
 import RepositoryListContainer from "./RepositoryListContainer";
 
@@ -7,12 +7,18 @@ const RepositoryList = () => {
   const [selectedSortType, setSelectedSortType] = React.useState({
     id: 0,
     label: "Latest repositories",
+    searchKeyword: null,
   });
-  let { repositories } = useRepositories(selectedSortType.id);
+  let { repositories } = useRepositories(selectedSortType.id, selectedSortType.searchKeyword);
   const [visible, setVisible] = React.useState(false);
 
   return (
     <Provider>
+      <Searchbar
+        placeholder='Search'
+        onChangeText={(query) => setSelectedSortType({...selectedSortType, searchKeyword: query})}
+        value={selectedSortType.searchKeyword}
+      />
       <Menu
         visible={visible}
         onDismiss={() => setVisible(!visible)}
