@@ -7,16 +7,25 @@ const RepositoryList = () => {
   const [selectedSortType, setSelectedSortType] = React.useState({
     id: 0,
     label: "Latest repositories",
-    searchKeyword: null,
+    searchKeyword: "",
   });
-  let { repositories } = useRepositories(selectedSortType.id, selectedSortType.searchKeyword);
+  
+  let { repositories, fetchMore } = useRepositories(
+    selectedSortType.id,
+    selectedSortType.searchKeyword,
+    6
+  );
   const [visible, setVisible] = React.useState(false);
+
+  const onEndReach = () => fetchMore();
 
   return (
     <Provider>
       <Searchbar
         placeholder='Search'
-        onChangeText={(query) => setSelectedSortType({...selectedSortType, searchKeyword: query})}
+        onChangeText={(query) =>
+          setSelectedSortType({ ...selectedSortType, searchKeyword: query })
+        }
         value={selectedSortType.searchKeyword}
       />
       <Menu
@@ -31,24 +40,39 @@ const RepositoryList = () => {
         <Menu.Item contentStyle={{ opacity: 0.4 }} title='Select an item...' />
         <Menu.Item
           onPress={() =>
-            setSelectedSortType({ id: 0, label: "Latest repositories" })
+            setSelectedSortType({
+              ...selectedSortType,
+              id: 0,
+              label: "Latest repositories",
+            })
           }
           title='Latest repositories'
         />
         <Menu.Item
           onPress={() =>
-            setSelectedSortType({ id: 1, label: "Highest rated repositories" })
+            setSelectedSortType({
+              ...selectedSortType,
+              id: 1,
+              label: "Highest rated repositories",
+            })
           }
           title='Highest rated repositories'
         />
         <Menu.Item
           onPress={() =>
-            setSelectedSortType({ id: 2, label: "Lowest rated repositories" })
+            setSelectedSortType({
+              ...selectedSortType,
+              id: 2,
+              label: "Lowest rated repositories",
+            })
           }
           title='Lowest rated repositories'
         />
       </Menu>
-      <RepositoryListContainer repositories={repositories} />
+      <RepositoryListContainer
+        repositories={repositories}
+        onEndReach={onEndReach}
+      />
     </Provider>
   );
 };

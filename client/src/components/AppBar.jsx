@@ -37,12 +37,13 @@ const AppBar = () => {
   // if (data && !data.authorizedUser) {
   //   signOut();
   // }
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal style={styles.scrollView}>
-        {data.authorizedUser ? (
+        <Link to='/' component={AppBarTab} label='Repositories' />
+        {data && data.authorizedUser ? (
           <>
-            <Link to='/' component={AppBarTab} label='Repositories' />
             <Link
               to='/create-review'
               component={AppBarTab}

@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 
 export const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryListContainer = ({ repositories }) => {
+const RepositoryListContainer = ({ repositories, onEndReach }) => {
 
   const history = useHistory();
   const repositoryNodes = repositories
@@ -37,6 +37,8 @@ const RepositoryListContainer = ({ repositories }) => {
         keyExtractor={(item) => item.id}
         ItemSeparatorComponent={ItemSeparator}
         renderItem={PressableContainer}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
       />
   );
 };

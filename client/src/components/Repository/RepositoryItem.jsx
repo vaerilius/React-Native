@@ -70,8 +70,15 @@ const computeNumber = (num) =>
 
 export const SingleRepository = () => {
   const { id } = useParams();
-  const { repository, reviews } = useRepository(id);
+  const { repository, reviews, loading, fetchMore } = useRepository(id, 2);
 
+  const onEndReach = () => fetchMore();
+
+if (loading) {
+  return (
+    <View><Text>loading</Text></View>
+  )
+}
   return (
     <FlatList
       data={reviews}
@@ -81,6 +88,8 @@ export const SingleRepository = () => {
         <RepositoryItem item={repository} displayButton />
       )}
       ItemSeparatorComponent={ItemSeparator}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
   );
 };
